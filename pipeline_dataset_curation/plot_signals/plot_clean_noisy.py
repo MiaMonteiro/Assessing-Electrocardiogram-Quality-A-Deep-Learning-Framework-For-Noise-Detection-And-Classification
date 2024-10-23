@@ -61,7 +61,7 @@ def plot_signals(original_signal, transformed_signal, noise_info, plot_path, fs=
     plt.close()
 
 
-def select_and_plot_clean_noisy(original_folder, noisy_folder, noise_info_folder, plots_folder, num_signals=30):
+def select_and_plot_clean_noisy(original_folder, noisy_folder, noise_info_folder, plots_folder, num_signals=40):
 
     # Get all the .npy files from the original folder and sort them alphabetically
     all_files = sorted([f for f in os.listdir(original_folder) if f.endswith('.npy')])
@@ -95,20 +95,20 @@ all_folders = [x_test_plots_folder, x_train_plots_folder, x_val_plots_folder]
 for folder in all_folders:
     os.makedirs(folder, exist_ok=True)
 
-x_test_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_clean_360\x_test_clean'
-x_test_noisy_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360\x_test_noisy'
+x_test_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_clean_360_normalized\x_test_clean'
+x_test_noisy_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360_normalized\x_test_noisy'
 x_test_noise_info_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360\noise_info\x_test_noise_info'
 print('starting plotting clean vs added noise for test')
 select_and_plot_clean_noisy(x_test_folder, x_test_noisy_folder, x_test_noise_info_folder, x_test_plots_folder)
 
-x_train_folder= r'C:\Users\marci\paper_proj_dataset\ptb_xl_clean_360\x_train_clean'
-x_train_noisy_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360\x_train_noisy'
+x_train_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_clean_360_normalized\x_train_clean'
+x_train_noisy_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360_normalized\x_train_noisy'
 x_train_noise_info_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360\noise_info\x_train_noise_info'
 print('starting plotting clean vs added noise for train')
 select_and_plot_clean_noisy(x_train_folder, x_train_noisy_folder, x_train_noise_info_folder, x_train_plots_folder)
 
-x_val_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_clean_360\x_val_clean'
-x_val_noisy_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360\x_val_noisy'
+x_val_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_clean_360_normalized\x_val_clean'
+x_val_noisy_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360_normalized\x_val_noisy'
 x_val_noise_info_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360\noise_info\x_val_noise_info'
 print('starting plotting clean vs added noise for val')
 select_and_plot_clean_noisy(x_val_folder, x_val_noisy_folder, x_val_noise_info_folder, x_val_plots_folder)

@@ -114,34 +114,6 @@ def load_raw_data_local(rec_file, csv_file_path, csv_filename, local_dir,  outpu
     print(f'Skipped {skipped_files} files due to errors during loading.')
     return data
 
-def load_nstdb_raw(pn_dir):
-    """
-    Loads raw noise data from the MIT-BIH Noise Stress Test Database.
-
-    Args:
-        pn_dir (str): Directory name or identifier on PhysioNet where the NSTDB records are located.
-
-    Returns:
-        list: A list containing the loaded noise data as numpy arrays.
-    """
-
-    print(f"Loading data from directory: {pn_dir}")
-    records_list = wfdb.get_record_list(pn_dir)
-    matching_records = [record for record in records_list if len(record) == 2]
-    print(f"Found {len(matching_records)} noise records")
-
-    data = []
-
-    with tqdm(total=len(matching_records), desc="Loading records", unit="record") as pbar:
-        for record in matching_records:
-            signals, fields = wfdb.rdsamp(record, pn_dir=pn_dir)
-            data.append(signals)
-            pbar.update(1)
-
-    print(f"Successfully loaded {len(matching_records)} records.")
-    return data
-
-
 def ptbxl_save(data, save_dir='data500'):
     """
     Saves each ECG record from the data list as a separate numpy file.

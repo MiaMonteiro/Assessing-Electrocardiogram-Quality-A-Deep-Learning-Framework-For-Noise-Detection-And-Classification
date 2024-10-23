@@ -31,9 +31,6 @@ data = np.array(data)
 # save each record separately as a numpy array
 ptbxl_save(data, dir)
 
-# load MIT-BIH noise database direclty from Physionet
-# pn_dir_noise = 'nstdb'
-# data_noise = load_nstdb_raw(pn_dir_noise)
 
 # Or download the dataset and load them from a local folder.
 dir_noise = r'C:\Users\marci\paper_proj_dataset\paper\mit_bih_noise_stress'

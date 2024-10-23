@@ -94,7 +94,7 @@ def add_noise_to_signal(clean_signal, noise_data, max_intervals=4):
         noise_info.append(interval_info)
 
     # Scale the smoothed noise and add it to the signal
-    scale_factor = random.uniform(0.1, 0.8)
+    scale_factor = random.uniform(0.2, 1)
     signal += scale_factor * combined_noise
 
     return signal, noise_info
