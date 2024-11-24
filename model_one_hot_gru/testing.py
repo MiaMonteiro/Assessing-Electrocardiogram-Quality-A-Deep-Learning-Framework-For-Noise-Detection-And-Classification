@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 from tqdm import tqdm  # Import tqdm for the progress bar
-from ONEHOT.ONE_HOT_GRU_dropout import ONEHOTgru, ECGDataset
+from ONE_HOT_GRU_dropout import ONEHOTgru, ECGDataset
 from torch.utils.data import DataLoader
 import os
 from eval_metrics import cm_1class, calculate_metrics, cm_4classes
@@ -10,7 +10,7 @@ from plot_metrics_model import plot_cm4, plot_cm1
 
 # TODO: ADD A CLASSIFICATION REPORT FUNCTION TO EVALUATE THE MODEL PRED BY PRED
 # idx_samples_to_save
-def test_model(model, device, test_loader):
+def test_model(model, device, test_loader, idx_samples_to_save):
 
     model.eval()
 
@@ -54,21 +54,22 @@ def test_model(model, device, test_loader):
     cm1 = cm_1class(cm1, all_labels, all_preds)
 
     # Select the corresponding inputs, labels, and predictions
-    # inputs_to_save = all_inputs[idx_samples_to_save]
-    # labels_to_save = all_labels[idx_samples_to_save]
-    # preds_to_save = all_preds[idx_samples_to_save]
+    inputs_to_save = all_inputs[idx_samples_to_save]
+    labels_to_save = all_labels[idx_samples_to_save]
+    preds_to_save = all_preds[idx_samples_to_save]
     # clean_to_save = all_clean_original[idx_samples_to_save]
 
     del all_inputs, all_labels, all_preds, all_clean_original
     torch.cuda.empty_cache()
-    return cm1
-# cm4,inputs_to_save, preds_to_save, labels_to_save, clean_to_save
+    return cm1, inputs_to_save, preds_to_save, labels_to_save
+# cm4,, clean_to_save
 def main():
+
     # GPU configuration
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print('Using device:', device)
 
-    model_path = r'C:\Users\marci\Proj_Tese\ptb_xl_360\model_predictions\ONEHOT_GRU_layers3_hiddensize_64_states3_patience40_biderectionalTrue_drop0.3_date0409_1751'
+    model_path = r'C:\Users\marci\paper_proj_dataset\models\ONEHOT_GRU_layers3_hiddensize_128_states3_patience40_biderectionalTrue_drop0.3_date0409_2154'
     model_file = 'best_model.pth'
 
     # Load the checkpoint
@@ -90,7 +91,7 @@ def main():
     model.eval()
 
     # Main directory for the dataset
-    main_dir = r'C:\Users\marci\Proj_Tese\ptb_xl_360'
+    main_dir = r'C:\Users\marci\paper_proj_dataset\ptb_xl_final'
 
     # test_dataset = ECGDataset(main_dir=main_dir, subset='test')
 
@@ -104,22 +105,22 @@ def main():
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=False, prefetch_factor=2)
     print(f"Number of test samples: {len(test_dataset)}")
 
-    # all_idx_test = len(test_loader.dataset)
+    all_idx_test = len(test_loader.dataset)
     # Ensure consistent sample selection
     np.random.seed(42)
-    # idx_samples_to_save = np.random.choice(all_idx_test, 1000, replace=False)
+    idx_samples_to_save = np.random.choice(all_idx_test, 100, replace=False)
     #
     # #print how many are being selected
-    # print(len(idx_samples_to_save), "Signals have been selected")
+    print(len(idx_samples_to_save), "Signals have been selected")
     # print('input index:', idx_samples_to_save)
     # # save this indexing
-    # np.save(os.path.join(model_path, 'idx_samples_to_save.npy'), idx_samples_to_save)
+    np.save(os.path.join(model_path, 'idx_samples_to_save.npy'), idx_samples_to_save)
 
-    idx_samples_to_save = np.load(os.path.join(model_path, 'idx_samples_to_save1000.npy'))
+    idx_samples_to_save = np.load(os.path.join(model_path, 'idx_samples_to_save.npy'))
 
     #     # Run the test model function
     # cm4,, inputs_to_save, preds_to_save, labels_to_save, clean_to_save
-    cm1 = test_model(model, device, test_loader)
+    inputs_to_save, preds_to_save, labels_to_save = test_model(model, device, test_loader, idx_samples_to_save)
     #, idx_samples_to_save
 
     # print the shapes
@@ -129,9 +130,9 @@ def main():
     # print("Clean signals shape", clean_to_save.shape)
     #
     # # Save the selected inputs, labels, and predictions
-    # np.save(os.path.join(model_path, 'inputs1000.npy'), inputs_to_save)
-    # np.save(os.path.join(model_path, 'labels1000.npy'), labels_to_save)
-    # np.save(os.path.join(model_path, 'preds1000.npy'), preds_to_save)
+    np.save(os.path.join(model_path, 'inputs100.npy'), inputs_to_save)
+    np.save(os.path.join(model_path, 'labels100.npy'), labels_to_save)
+    np.save(os.path.join(model_path, 'preds100.npy'), preds_to_save)
     # np.save(os.path.join(model_path, 'clean_signals1000.npy'), clean_to_save)
 
 
@@ -141,7 +142,7 @@ def main():
     # Plot the confusion matrices
 
     # plot_cm4(cm4, model_path)
-    plot_cm1(cm1, model_path)
+    # plot_cm1(cm1, model_path)
 
     # Calculate the metrics for the individual classes
     # metrics = calculate_metrics(cm1)

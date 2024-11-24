@@ -57,11 +57,11 @@ def plot_signals(original_signal, transformed_signal, noise_info, plot_path, fs=
 
     # Save the figure in both PNG (600 DPI) and SVG formats
     plt.savefig(f"{plot_path}.png", dpi=600, format='png')  # Save as PNG with 600 DPI
-    # plt.savefig(f"{plot_path}.svg", format='svg')  # Save as SVG
+    plt.savefig(f"{plot_path}.svg", format='svg')  # Save as SVG
     plt.close()
 
 
-def select_and_plot_clean_noisy(original_folder, noisy_folder, noise_info_folder, plots_folder, num_signals=40):
+def select_and_plot_clean_noisy(original_folder, noisy_folder, noise_info_folder, plots_folder, num_signals=150):
 
     # Get all the .npy files from the original folder and sort them alphabetically
     all_files = sorted([f for f in os.listdir(original_folder) if f.endswith('.npy')])

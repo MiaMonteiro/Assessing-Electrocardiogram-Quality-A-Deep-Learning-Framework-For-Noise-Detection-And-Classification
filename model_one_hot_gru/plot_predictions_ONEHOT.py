@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-from model_testing.classification import classify
+from classification import classify
 import matplotlib.gridspec as gridspec
 import matplotlib.colors as mcolors
 import matplotlib.patches as mpatches
@@ -337,11 +337,11 @@ def plot_label_spans(inputdir, idx, save_path=None, fs=360):
 
 
 # Define the input and output directories
-inputdir = r'C:\Users\marci\Proj_Tese\ptb_xl_360\model_predictions\ONEHOT_GRU_layers3_hiddensize_64_states3_patience40_biderectionalTrue_drop0.3_date0409_1751'
+inputdir = r'C:\Users\marci\paper_proj_dataset\models\ONEHOT_GRU_layers3_hiddensize_128_states3_patience40_biderectionalTrue_drop0.3_date0409_215'
 # Load the indices to plot
 idx = np.load(os.path.join(inputdir, 'idx_samples_to_save.npy'))
 
-output_dir = r'C:\Users\marci\Proj_Tese\ptb_xl_360\model_predictions\ONEHOT_GRU_layers3_hiddensize_64_states3_patience40_biderectionalTrue_drop0.3_date0409_1751\1000\plots_with_clean_aligned_svg'
+output_dir = r'C:\Users\marci\paper_proj_dataset\models\ONEHOT_GRU_layers3_hiddensize_128_states3_patience40_biderectionalTrue_drop0.3_date0409_215\plots'
 
 # Call the plotting function with the indices and save path
 plot_label_spans(inputdir, idx=idx, save_path=output_dir)

@@ -139,8 +139,8 @@ spec.loader.exec_module(sqis)
 ######### PART 2 ##########
 
 # Define the folders
-noisy_folder = r'C:\Users\marci\Proj_Tese\ptb_xl_360\test_noisy_order_fixed'
-clean_folder = r'C:\Users\marci\Proj_Tese\ptb_xl_360\test_clean_order_fixed'
+noisy_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_noisy_360_normalized\x_test_noisy'
+clean_folder = r'C:\Users\marci\paper_proj_dataset\ptb_xl_clean_360_normalized\x_test_clean'
 
 # Initialize dictionaries
 noisy_signals = {}

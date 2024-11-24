@@ -236,7 +236,7 @@ def main(
         batch_size=128,
         num_epochs=200,
         patience=40,
-        main_dir=r'C:\Users\marci\Proj_Tese\ptb_xl_360'):
+        main_dir=r'C:\Users\marci\paper_proj_dataset\ptb_xl_final'):
 
     global device
 

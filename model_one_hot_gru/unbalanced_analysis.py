@@ -60,9 +60,9 @@ if __name__ == "__main__":
 
 
 #### PLOT HIST #####
-
+150233577
 # categories = ['MA', 'EM', 'BW', 'None']
-# percentages = [16.2, 16.0, 27.2, 40.7]
+# percentages = [16.0, 16.0, 27.4, 40.7]
 # actual_numbers = [31531853, 31127919, 53146197, 79333726]
 # colors = ['lightcoral', 'palegreen', 'paleturquoise', 'lightgray']
 #

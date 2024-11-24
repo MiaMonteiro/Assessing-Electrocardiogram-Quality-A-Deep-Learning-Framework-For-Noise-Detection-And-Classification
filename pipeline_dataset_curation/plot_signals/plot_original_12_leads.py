@@ -69,8 +69,8 @@ def plot_12_leads(signals, fs_original=500, fs_target=360, target_duration=10):
     plt.subplots_adjust(hspace=0.3, wspace=0.2)  # Adjust space between plots
 
     # Save the plot in both PNG (600 DPI) and SVG formats
-    plt.savefig(f'10079_test_all_leads.png', dpi=600, format='png')
-    plt.savefig(f'10079_test_all_leads.svg', format='svg')
+    plt.savefig(f'10100_test_all_leads.png', dpi=600, format='png')
+    plt.savefig(f'10100_test_all_leads.svg', format='svg')
     plt.close()
     print(f"Saved 12-lead plot")
 
@@ -79,8 +79,8 @@ def plot_12_leads(signals, fs_original=500, fs_target=360, target_duration=10):
 # plot_12_leads(signals)
 
 # Example usage:
-dir_path = r'C:\Users\marci\Proj_Tese\ptb_xl_360_split\test_all_leads'
-filename = '10079.npy'
+dir_path = r'C:\Users\marci\paper_proj_dataset\ptb_xl_500_split\x_test_all_leads'
+filename = '10137.npy'
 signals = np.load(os.path.join(dir_path, filename))
 print(signals.shape)
 
