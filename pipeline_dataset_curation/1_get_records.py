@@ -1,7 +1,7 @@
 import numpy as np
 import pickle
 import os
-from tools.loading_dataset import load_nstdb_raw, load_raw_data_local, ptbxl_save
+from tools.loading_dataset import load_raw_data_local, ptbxl_save
 import wfdb
 from matplotlib import pyplot as plt
 from sklearn.preprocessing import minmax_scale
@@ -34,7 +34,7 @@ ptbxl_save(data, dir)
 
 # Or download the dataset and load them from a local folder.
 dir_noise = r'C:\Users\marci\paper_proj_dataset\paper\mit_bih_noise_stress'
-bw_filepath = os.path.join(dir_noise, 'ma')
+bw_filepath = os.path.join(dir_noise, 'bw')
 bw, bw_meta = wfdb.rdsamp(bw_filepath)
 ma_filepath = os.path.join(dir_noise, 'ma')
 ma, ma_meta = wfdb.rdsamp(ma_filepath)
